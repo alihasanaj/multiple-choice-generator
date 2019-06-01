@@ -1,0 +1,4 @@
+/* Formats the description text area to allow line spaces */
+.formatDescription {
+    white-space: pre-line;
+}
