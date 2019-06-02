@@ -1,3 +1,16 @@
+React Application
+
+What I learned:
+
+React
+- Refs
+- Passing function to components 
+- updating state with object arrays
+
+Bootstrap
+- Spliting a page in half
+
+
 
 Visit link to view site: https://multiple-choice-generator.netlify.com/
 
