@@ -54,9 +54,12 @@ class App extends Component {
 
   // Called on each time the question title of a specific question is changed its 
   // given the id and the event info to update on the form side
+  
+
   changeQuestionTitle = (id, event) => {
         let newQuestions = this.state.questions;
-        newQuestions[id].QName = event.target.value;
+        let idUpdate = this.idFinder(id, newQuestions);
+        newQuestions[idUpdate].QName = event.target.value;
         this.setState({
           questions: newQuestions
         })
@@ -67,7 +70,8 @@ class App extends Component {
   // given the id and the event info to update on the form side
   changeQuestionDesc = (id, event) => {
     let newQuestions = this.state.questions;
-    newQuestions[id].DName = event.target.value;
+    let idUpdate = this.idFinder(id, newQuestions);
+    newQuestions[idUpdate].DName = event.target.value;
     this.setState({
       questions: newQuestions
     })
@@ -78,7 +82,8 @@ class App extends Component {
   onQuestionOptionEnter = (id, event) => {
     if (event.key === 'Enter' && event.target.value.length > 0 ){
       let newQuestions = this.state.questions;
-      newQuestions[id].Options.push(event.target.value);
+      let idUpdate = this.idFinder(id, newQuestions);
+      newQuestions[idUpdate].Options.push(event.target.value);
       this.setState({
         questions: newQuestions
       })
@@ -91,7 +96,8 @@ class App extends Component {
   // Uses splice to remove that specific value from the array
   onQuestionOptionDelete = (questionID, optionID) => {
       let newQuestions = this.state.questions;
-      newQuestions[questionID].Options.splice(optionID, 1);
+      let idUpdate = this.idFinder(questionID, newQuestions);
+      newQuestions[idUpdate].Options.splice(optionID, 1);
       this.setState({
         questions: newQuestions
       })
@@ -101,7 +107,9 @@ class App extends Component {
   // To sumbit options using 'Enter' key and the Add Option button
   onQuestionOptionChange = (id, event) => {
     let newQuestions = this.state.questions;
-    newQuestions[id].OInput = event.target.value;
+    let idUpdate = this.idFinder(id, newQuestions);
+    newQuestions[idUpdate].OInput = event.target.value;
+    
     this.setState({
       questions: newQuestions
     })
@@ -122,18 +130,22 @@ class App extends Component {
   // Find and delete the button with the id given
   onQuestionDeleteButton = (id) => {
     let newQuestions = this.state.questions;
+    
     let questionPositionDelete = newQuestions.findIndex( 
       (question) => {
         return question.id === id
       }
     );
     newQuestions.splice(questionPositionDelete, 1);
+    console.log(newQuestions);
     this.setState({
       questions: newQuestions
     })
   }
 
-  
+  idFinder (id, questionArray) {
+    return questionArray.findIndex((question) => { return question.id === id})
+ }
 
   render() {
     const {title, titleDescription, questions, count } = this.state;
