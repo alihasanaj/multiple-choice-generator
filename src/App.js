@@ -119,7 +119,8 @@ class App extends Component {
   onQuestionOptionButton = (id, input) => {
     if (input.value.length > 0) {
         let newQuestions = this.state.questions;
-        newQuestions[id].Options.push(input.value);
+        let idUpdate = this.idFinder(id, newQuestions);
+        newQuestions[idUpdate].Options.push(input.value);
         input.value = "";
         this.setState({
           questions: newQuestions
@@ -131,11 +132,7 @@ class App extends Component {
   onQuestionDeleteButton = (id) => {
     let newQuestions = this.state.questions;
     
-    let questionPositionDelete = newQuestions.findIndex( 
-      (question) => {
-        return question.id === id
-      }
-    );
+    let questionPositionDelete = this.idFinder(id, newQuestions);
     newQuestions.splice(questionPositionDelete, 1);
     console.log(newQuestions);
     this.setState({
