@@ -12,7 +12,7 @@ Bootstrap
 
 
 
-Visit link to view site: https://multiple-choice-generator.netlify.com/
+Visit link to view site: https://multiple-choice-generator.netlify.app/
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
